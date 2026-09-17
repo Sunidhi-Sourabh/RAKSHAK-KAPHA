@@ -155,12 +155,12 @@ python3 pipeline.py
 This updates triage_model.h for compile-time embedding into the ESP32.
 
 ---
-##Security & Privacy
+## Security & Privacy
 1. Zero-Cloud Architecture: Vitals and location data are processed entirely offline without sending telemetry to external cloud servers.
 2. DPDP Act & HIPAA Compliant: Patient identities remain anonymous during peer-to-peer BLE mesh broadcasts using rotating ephemeral node identifiers.
 
 ---
-##References & Accreditation
+## References & Accreditation
 1. National Health Mission (NHM): ASHA Operational Guidelines for Primary Healthcare.
 2. National Disaster Management Authority (NDMA): Guidelines on Emergency Field Triage and Relief Camps.
 3. IEEE Transactions on Biomedical Engineering: Validation benchmarks for sternum PPG signal fidelity.
