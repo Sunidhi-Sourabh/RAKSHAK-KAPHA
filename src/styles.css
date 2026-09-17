@@ -1,0 +1,190 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * RAKSHAK-KAPHA — Tactical Field Operations design system.
+ * Instrument-panel dark: gunmetal chassis, phosphor readouts, triage signal
+ * colors. All colors are oklch semantic tokens; never hardcode in components.
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 2px);
+  --radius-md: var(--radius);
+  --radius-lg: calc(var(--radius) + 2px);
+  --radius-xl: calc(var(--radius) + 6px);
+
+  --font-display: "Chakra Petch", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-panel: var(--panel);
+  --color-panel-raised: var(--panel-raised);
+  --color-grid: var(--grid);
+  --color-vital-green: var(--vital-green);
+  --color-vital-amber: var(--vital-amber);
+  --color-vital-red: var(--vital-red);
+  --color-vital-cyan: var(--vital-cyan);
+  --color-vital-violet: var(--vital-violet);
+}
+
+:root {
+  --radius: 0.25rem;
+
+  --background: oklch(0.16 0.014 250);
+  --foreground: oklch(0.93 0.012 220);
+  --panel: oklch(0.204 0.016 250);
+  --panel-raised: oklch(0.245 0.018 250);
+  --grid: oklch(0.32 0.02 250);
+
+  --card: oklch(0.204 0.016 250);
+  --card-foreground: oklch(0.93 0.012 220);
+  --popover: oklch(0.204 0.016 250);
+  --popover-foreground: oklch(0.93 0.012 220);
+
+  --primary: oklch(0.79 0.17 168);
+  --primary-foreground: oklch(0.17 0.02 200);
+  --secondary: oklch(0.27 0.02 250);
+  --secondary-foreground: oklch(0.93 0.012 220);
+  --muted: oklch(0.245 0.018 250);
+  --muted-foreground: oklch(0.66 0.02 240);
+  --accent: oklch(0.83 0.16 84);
+  --accent-foreground: oklch(0.18 0.02 60);
+  --destructive: oklch(0.62 0.24 26);
+  --destructive-foreground: oklch(0.97 0.01 20);
+
+  --border: oklch(0.31 0.018 250);
+  --input: oklch(0.31 0.018 250);
+  --ring: oklch(0.79 0.17 168);
+
+  --vital-green: oklch(0.82 0.19 152);
+  --vital-amber: oklch(0.83 0.17 82);
+  --vital-red: oklch(0.65 0.25 25);
+  --vital-cyan: oklch(0.83 0.13 205);
+  --vital-violet: oklch(0.74 0.15 300);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-mono);
+    background-image:
+      linear-gradient(oklch(0.32 0.02 250 / 0.13) 1px, transparent 1px),
+      linear-gradient(90deg, oklch(0.32 0.02 250 / 0.13) 1px, transparent 1px);
+    background-size: 44px 44px;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    letter-spacing: 0.02em;
+  }
+}
+
+@utility panel-frame {
+  background-color: var(--color-panel);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow:
+    inset 0 1px 0 oklch(1 0 0 / 0.045),
+    0 10px 26px oklch(0.1 0.02 250 / 0.55);
+}
+
+@utility label-micro {
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-muted-foreground);
+}
+
+@utility readout {
+  font-family: var(--font-display);
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  line-height: 1;
+}
+
+@utility glow-green {
+  color: var(--color-vital-green);
+  text-shadow: 0 0 18px oklch(0.82 0.19 152 / 0.45);
+}
+@utility glow-amber {
+  color: var(--color-vital-amber);
+  text-shadow: 0 0 18px oklch(0.83 0.17 82 / 0.45);
+}
+@utility glow-red {
+  color: var(--color-vital-red);
+  text-shadow: 0 0 20px oklch(0.65 0.25 25 / 0.55);
+}
+
+@keyframes kapha-flash {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.28;
+  }
+}
+
+@utility flash-alarm {
+  animation: kapha-flash 0.62s steps(1, end) infinite;
+}
+
+@keyframes kapha-breathe {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(0.985);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.015);
+  }
+}
+
+@utility breathe {
+  animation: kapha-breathe 2.6s ease-in-out infinite;
+}
+
+@keyframes kapha-scan {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(400%);
+  }
+}
+
+@utility scanline {
+  animation: kapha-scan 5.5s linear infinite;
+}
